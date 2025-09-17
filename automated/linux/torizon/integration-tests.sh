@@ -57,7 +57,7 @@ echo $SSH_USERNAME
 # robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REMOTE" --outputdir=.. test/
 
 cd ..
-touch output.xml
+touch ../../utils/output.xml
 ../../utils/parse-robot-framework.py -r output.xml
 
 exit 0
