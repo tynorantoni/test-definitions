@@ -52,12 +52,12 @@ echo $SSH_SERVER
 echo "username"
 echo $SSH_USERNAME
 
-touch ../output.xml
 
 # run tests
 # robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REMOTE" --outputdir=.. test/
 
 cd ..
+touch output.xml
 ../../utils/parse-robot-framework.py -r output.xml
 
 exit 0
