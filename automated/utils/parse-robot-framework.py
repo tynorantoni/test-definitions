@@ -66,6 +66,7 @@ def main():
     username = os.getenv("SSH_USERNAME")
     ssh = os.getenv("SSH_KEY")
     print(f"server: {server} user: {username}")
+    print(ssh)
     try:
         pkey = RSAKey.from_private_key(io.StringIO(ssh))
     except Exception as ex:
