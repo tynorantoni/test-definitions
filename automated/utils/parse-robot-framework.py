@@ -35,7 +35,9 @@ def send_output(result_file):
     try:
         pkey = RSAKey.from_private_key(io.StringIO(os.getenv("SSH_KEY")))
     except Exception as ex:
-        print(f"not able to find ssh_key {os.getenv("SSH_KEY")} so it raised an exception {ex}")
+        print(
+            f'not able to find ssh_key {os.getenv("SSH_KEY")} so it raised an exception {ex}'
+        )
 
     with SSHClient() as ssh:
         try:
@@ -66,7 +68,9 @@ def main():
     try:
         pkey = RSAKey.from_private_key(io.StringIO(os.getenv("SSH_KEY")))
     except Exception as ex:
-        print(f"not able to find ssh_key {os.getenv("SSH_KEY")} so it raised an exception {ex}")
+        print(
+            f'not able to find ssh_key {os.getenv("SSH_KEY")} so it raised an exception {ex}'
+        )
     result = ExecutionResult(args.result_file)
 
     send_output(args.result_file)
