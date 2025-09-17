@@ -64,12 +64,13 @@ def send_output(result_file):
 def main():
     server = os.getenv("SSH_SERVER")
     username = os.getenv("SSH_USERNAME")
+    ssh = os.getenv("SSH_KEY")
     print(f"server: {server} user: {username}")
     try:
-        pkey = RSAKey.from_private_key(io.StringIO(os.getenv("SSH_KEY").split(" ")))
+        pkey = RSAKey.from_private_key(io.StringIO(ssh))
     except Exception as ex:
         print(
-            f'not able to find ssh_key {os.getenv("SSH_KEY")} so it raised an exception {ex}'
+            f'not able to find ssh_key {ssh} so it raised an exception {ex}'
         )
     result = ExecutionResult(args.result_file)
 
