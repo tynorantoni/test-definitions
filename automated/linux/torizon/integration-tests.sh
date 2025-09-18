@@ -57,7 +57,7 @@ echo "squad url"
 echo $SQUAD_UPLOAD_URL
 
 # run tests
-# robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REMOTE" --outputdir=.. test/
+robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REMOTE" --outputdir=.. test/
 
 cd ..
 
