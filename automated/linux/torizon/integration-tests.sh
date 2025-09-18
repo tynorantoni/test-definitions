@@ -57,7 +57,8 @@ echo $SSH_USERNAME
 # robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REMOTE" --outputdir=.. test/
 
 cd ..
-touch ../../utils/output.xml
+
+../../utils/upload-to-squad.sh -a output.xml -u $SQUAD_UPLOAD_URL
 ../../utils/parse-robot-framework.py -r output.xml
 
 exit 0
