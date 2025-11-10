@@ -36,6 +36,8 @@ chown root:root /usr/local/bin/geckodriver
 # Download and install uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
+. "$HOME"/.local/bin/env
+
 # clone baklava-integration repo and install required pip pkgs
 get_test_program "https://gitlab-ci-token:${GITLAB_TOKEN}@gitlab.com/LinaroLtd/lava/appliance/baklava-integration/docker-tests.git" "docker-tests" "main"
 git checkout "$BRANCH_NAME"
