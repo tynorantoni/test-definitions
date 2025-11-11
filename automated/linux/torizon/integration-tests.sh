@@ -13,11 +13,11 @@ SPIRE_VERSION="0.3.4"
 
 if [ "$ARCH" = "x86_64" ]; then
     DRIVER="geckodriver-v0.36.0-linux64.tar.gz"
-    SPIRE="staging-spire_$SPIRE_VERSION_linux_amd64.deb"
+    SPIRE="staging-spire_${SPIRE_VERSION}_linux_amd64.deb"
 
 elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
     DRIVER="geckodriver-v0.36.0-linux-aarch64.tar.gz"
-    SPIRE="staging-spire_$SPIRE_VERSION_linux_arm64.deb"
+    SPIRE="staging-spire_${SPIRE_VERSION}_linux_arm64.deb"
 else
     echo "Unknown architecture: $ARCH"
     exit 1
