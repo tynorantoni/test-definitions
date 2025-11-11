@@ -12,20 +12,19 @@ ARCH=$(uname -m)
 
 if [ "$ARCH" = "x86_64" ]; then
     DRIVER="geckodriver-v0.36.0-linux64.tar.gz"
-    # install spire package
-    wget https://github.com/Linaro/SPIRE-CLI-S-/releases/download/0.2.0-alpha%2B006/staging-spire_0.2.0-alpha+006_linux_amd64.deb
-    dpkg -i staging-spire_0.2.0-alpha+006_linux_amd64.deb
+    SPIRE="staging-spire_0.3.4_linux_amd64.deb"
 
 elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
     DRIVER="geckodriver-v0.36.0-linux-aarch64.tar.gz"
-    # install spire package
-    wget https://github.com/Linaro/SPIRE-CLI-S-/releases/download/0.2.0-alpha%2B019/staging-spire_0.2.0-alpha+019_linux_arm64.deb
-    dpkg -i staging-spire_0.2.0-alpha+019_linux_arm64.deb
-
+    SPIRE="staging-spire_0.3.4_linux_arm64.deb"
 else
     echo "Unknown architecture: $ARCH"
     exit 1
 fi
+
+# Download and install spire package
+curl -sSLO "https://github.com/Linaro/SPIRE-CLI-S-/releases/download/0.3.4/$SPIRE"
+dpkg -i "$SPIRE"
 
 # Download and install gecko driver
 curl -LO "https://github.com/mozilla/geckodriver/releases/download/v0.36.0/$DRIVER"
@@ -52,3 +51,7 @@ cd ..
 ../../utils/parse-robot-framework.py -r output.xml
 
 exit 0
+#Also for more verbose log output listener flag is present to
+#show currently tested keywords with the result and elapsed
+#time.
+
