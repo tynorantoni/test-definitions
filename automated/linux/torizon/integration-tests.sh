@@ -48,10 +48,6 @@ uv run robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REM
 
 cd ..
 ../../utils/upload-to-squad.sh -a output.xml -u "$SQUAD_UPLOAD_URL"
-../../utils/parse-robot-framework.py -r output.xml
+uv run ../../utils/parse-robot-framework.py -r output.xml
 
 exit 0
-#Also for more verbose log output listener flag is present to
-#show currently tested keywords with the result and elapsed
-#time.
-
