@@ -9,21 +9,22 @@ set -x
 
 # temp hack for aarch64 geckodriver
 ARCH=$(uname -m)
+SPIRE_VERSION="0.3.4"
 
 if [ "$ARCH" = "x86_64" ]; then
     DRIVER="geckodriver-v0.36.0-linux64.tar.gz"
-    SPIRE="staging-spire_0.3.4_linux_amd64.deb"
+    SPIRE="staging-spire_$SPIRE_VERSION_linux_amd64.deb"
 
 elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
     DRIVER="geckodriver-v0.36.0-linux-aarch64.tar.gz"
-    SPIRE="staging-spire_0.3.4_linux_arm64.deb"
+    SPIRE="staging-spire_$SPIRE_VERSION_linux_arm64.deb"
 else
     echo "Unknown architecture: $ARCH"
     exit 1
 fi
 
 # Download and install spire package
-curl -sSLO "https://github.com/Linaro/SPIRE-CLI-S-/releases/download/0.3.4/$SPIRE"
+curl -sSLO "https://github.com/Linaro/SPIRE-CLI-S-/releases/download/$SPIRE_VERSION/$SPIRE"
 dpkg -i "$SPIRE"
 
 # Download and install gecko driver
@@ -48,5 +49,5 @@ export SPIRE_PAT_TOKEN LAVA_TOKEN LAVA_PASSWORD SQUAD_UPLOAD_URL SQUAD_ARCHIVE_S
 
 #cd ..
 #../../../utils/upload-to-squad.sh -a ../output.xml -u "$SQUAD_UPLOAD_URL"
-uv run --project ../../../utils/ ../../../utils/parse-robot-framework.py -r ../output.xml
+uv run --project ../../../utils/ uv run ../../../utils/parse-robot-framework.py -r ../output.xml
 exit 0
