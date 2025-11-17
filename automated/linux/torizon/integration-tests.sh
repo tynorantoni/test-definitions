@@ -4,11 +4,11 @@
 set -x
 . ../../lib/sh-test-lib
 
-UTILS_PATH=$("../../../utils" && pwd)
+UTILS_PATH=$(cd ../../../utils && pwd)
 
 # source the secrets file to get the gitlab_token env var
 lava_test_dir="$(
-  dir="$PWD"
+  dir="$(pwd)"
   while [ "$dir" != "/" ]; do
     find "$dir" -maxdepth 1 -type d -regex '.*/lava-[0-9]+' 2>/dev/null
     dir=$(dirname "$dir")
