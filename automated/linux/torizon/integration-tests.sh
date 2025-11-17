@@ -5,8 +5,8 @@ set -x
 . ../../lib/sh-test-lib
 
 # source the secrets file to get the gitlab_token env var
-
-lava_test_dir="$(find /lava-* -type d | grep -E '^/lava-[0-9]+' 2>/dev/null | sort | tail -1)"
+echo "$PWD"
+lava_test_dir="$(find / -type d | grep -E '^/lava-[0-9]+' 2>/dev/null | sort | tail -1)"
     if test -f "${lava_test_dir}/secrets"; then
         . "${lava_test_dir}/secrets"
     fi
