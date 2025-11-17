@@ -6,7 +6,7 @@ set -x
 
 # source the secrets file to get the gitlab_token env var
 
-lava_test_dir="$(find /lava-* -maxdepth 0 -type d | grep -E '^/lava-[0-9]+' 2>/dev/null | sort | tail -1)"
+lava_test_dir="$(find ../../lava-* -maxdepth 0 -type d | grep -E '^/lava-[0-9]+' 2>/dev/null | sort | tail -1)"
     if test -f "${lava_test_dir}/secrets"; then
         . "${lava_test_dir}/secrets"
     fi
@@ -23,11 +23,11 @@ case "${abi}" in
     SPIRE_ARCH="linux_amd64"
     ;;
 arm64|aarch64)
-    DRIVER="linux-aarch64"
-    SPIRE="linux_arm64"
+    GECKODRIVER="linux-aarch64"
+    SPIRE_ARCH="linux_arm64"
     ;;
 *)
-    echo "Unknown architecture: $ARCH"
+    echo "Unknown architecture: ${abi}"
     exit 1
     ;;
 esac
@@ -41,7 +41,7 @@ dpkg -i "$SPIRE"
 
 # Download and install gecko driver
 curl -LO "https://github.com/mozilla/geckodriver/releases/download/${GECKO_VERSION}/$GECKODRIVER"
-tar -xf "$DRIVER"
+tar -xf "$GECKODRIVER"
 mv geckodriver /usr/local/bin
 chown root:root /usr/local/bin/geckodriver
 
