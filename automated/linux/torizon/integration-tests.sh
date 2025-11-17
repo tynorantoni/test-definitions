@@ -4,7 +4,7 @@
 set -x
 . ../../lib/sh-test-lib
 
-UTILS_PATH="../../../utils"
+UTILS_PATH=$("../../../utils" && pwd)
 
 # source the secrets file to get the gitlab_token env var
 lava_test_dir="$(
