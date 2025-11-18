@@ -27,7 +27,7 @@ UV_VERSION="0.9.4"
 
 detect_abi
 # shellcheck disable=SC2154
-case "${abi}" in 
+case "${abi}" in
   x86_64)
     GECKODRIVER_ARCH="linux64"
     SPIRE_ARCH="linux_amd64"
@@ -60,7 +60,7 @@ curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
 . "$HOME"/.local/bin/env
 
 # clone baklava-integration repo and install required pip pkgs
-get_test_program "https://gitlab-ci-token:${GITLAB_TOKEN}@gitlab.com/LinaroLtd/lava/appliance/baklava-integration/docker-tests.git" "docker-tests" "$BRANCH_NAME"
+get_test_program "https://gitlab-ci-token:${GITLAB_TOKEN}@gitlab.com/LinaroLtd/lava/appliance/baklava-integration/docker-tests.git" "docker-tests" submit-rpi-job
 
 export SPIRE_PAT_TOKEN LAVA_TOKEN LAVA_PASSWORD SQUAD_UPLOAD_URL SQUAD_ARCHIVE_SUBMIT_TOKEN
 
