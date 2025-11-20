@@ -61,11 +61,12 @@ curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
 
 # clone baklava-integration repo and install required pip pkgs
 get_test_program "https://gitlab-ci-token:${GITLAB_TOKEN}@gitlab.com/LinaroLtd/lava/appliance/baklava-integration/docker-tests.git" "docker-tests" "main"
+git checkout inventory-selectors
 
 export SPIRE_PAT_TOKEN LAVA_TOKEN LAVA_PASSWORD SQUAD_UPLOAD_URL SQUAD_ARCHIVE_SUBMIT_TOKEN
 
 # run tests with uv
-uv run robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REMOTE" --outputdir=.. --listener test/keyword_listener.py test/ui/user_environment.robot
+uv run robot --pythonpath . --exclude gitlab_pipeline --variable remote:"$IS_REMOTE" --outputdir=.. --listener test/keyword_listener.py test/
 
 "${UTILS_PATH}"/upload-to-squad.sh -a ../output.xml -u "$SQUAD_UPLOAD_URL"
 uv run --project "${UTILS_PATH}"/ uv run "${UTILS_PATH}"/parse-robot-framework.py -r ../output.xml
